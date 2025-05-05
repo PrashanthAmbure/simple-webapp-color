@@ -84,8 +84,6 @@ jobs:
       run: |
         oc apply -f manifest.yaml
 
-
-
     # - name: Deploy to OpenShift
     #   run: |
     #     oc project ${{ secrets.OCP_NAMESPACE }}
