@@ -62,9 +62,23 @@ jobs:
     # - name: Debug DNS
     #   run: nslookup https://api.crc.testing:6443
       
-    - name: Login to OpenShift
+    # - name: Login to OpenShift
+    #   run: |
+    #     oc login ${{ secrets.OCP_SERVER }} --token=${{ secrets.OCP_TOKEN }} --insecure-skip-tls-verify
+
+    - name: Install OpenShift CLI on Windows
+      shell: powershell
       run: |
-        oc login ${{ secrets.OCP_SERVER }} --token=${{ secrets.OCP_TOKEN }} --insecure-skip-tls-verify
+        $url = "https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-windows.zip"
+        $zipPath = "$env:RUNNER_TEMP\oc.zip"
+        $extractPath = "$env:RUNNER_TEMP\oc"
+    
+        Invoke-WebRequest -Uri $url -OutFile $zipPath
+        Expand-Archive -Path $zipPath -DestinationPath $extractPath
+    
+        $env:Path += ";$extractPath"
+        Write-Output "OC CLI installed and added to PATH"
+
 
     - name: Deploy to OpenShift
       run: |
