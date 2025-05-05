@@ -54,10 +54,10 @@ jobs:
     - name: Push to Docker Hub
       run: docker push ${{ secrets.DOCKER_USERNAME }}/simple-webapp-color:1.3
 
-    - name: Install OpenShift CLI
-      run: |
-        curl -L https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz | tar -xz
-        sudo mv oc kubectl /usr/local/bin/
+    # - name: Install OpenShift CLI
+    #   run: |
+    #     curl -L https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz | tar -xz
+    #     sudo mv oc kubectl /usr/local/bin/
         
     - name: Install OpenShift CLI on Windows
       shell: powershell
