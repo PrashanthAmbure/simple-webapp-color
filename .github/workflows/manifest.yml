@@ -22,11 +22,11 @@ jobs:
         echo "Username length: ${#DOCKER_USERNAME}"
         echo "Token length: ${#DOCKER_PASSWORD}"
      
-    - name: Docker Login (Debug Mode)
-      run: |
-        echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-        echo "Login exit code: $LASTEXITCODE"
-      shell: powershell
+    # - name: Docker Login (Debug Mode)
+    #   run: |
+    #     echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+    #     echo "Login exit code: $LASTEXITCODE"
+    #   shell: powershell
     
       
     - name: Log in to Docker Hub
