@@ -80,6 +80,13 @@ jobs:
       run: |
         oc login ${{ secrets.OCP_SERVER }} --token=${{ secrets.OCP_TOKEN }} --insecure-skip-tls-verify
 
+    - name: Show current directory and list files
+      shell: powershell
+      run: |
+        Write-Output "Current dir: $(Get-Location)"
+        Get-ChildItem -Recurse
+
+
     - name: Deploy to OpenShift
       run: |
         oc apply -f manifest.yaml
