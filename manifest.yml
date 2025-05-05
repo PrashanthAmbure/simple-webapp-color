@@ -1,0 +1,30 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8s-color-webapp-service
+spec:
+  selector:
+    app-name: lbl-colorwebapp
+  ports:
+    - port: 8081
+      targetPort: 8080
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-color-webapp-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app-name: lbl-colorwebapp
+  template:
+    metadata:
+      labels:
+        app-name: lbl-colorwebapp
+    spec:
+      containers:
+        - name: ctr-colorwebapp
+          image: xlncminds/simple-webapp-color:latest
