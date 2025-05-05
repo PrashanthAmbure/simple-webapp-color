@@ -17,10 +17,22 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v4
 
-    - name: Debug secrets
-      run: echo "DOCKER_USERNAME=${{ secrets.DOCKER_USERNAME }}, DOCKER_PASSWORD=${{ secrets.DOCKER_PASSWORD }}"
+    - name: Check if Docker password is set
+      run: |
+        if [ -z "${{ secrets.DOCKER_PASSWORD }}" ]; then
+          echo "DOCKER_PASSWORD is empty"
+        else
+          echo "DOCKER_PASSWORD is set"
+        fi
 
-      
+    - name: Check if Docker username is set
+      run: |
+        if [ -z "${{ secrets.DOCKER_USERNAME }}" ]; then
+          echo "DOCKER_USERNAME is empty"
+        else
+          echo "DOCKER_USERNAME is set"
+        fi
+        
     - name: Echo secret length (sanitized check)
       run: |
         echo "Username length: ${#DOCKER_USERNAME}"
