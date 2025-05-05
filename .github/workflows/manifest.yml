@@ -20,7 +20,7 @@ jobs:
       run: docker build -t ${{ secrets.DOCKER_USERNAME }}/simple-webapp-color:1.3 .
 
     - name: Push to Docker Hub
-      run: docker push ${{ secrets.DOCKER_USERNAME }}/simple-webapp-color:latest
+      run: docker push ${{ secrets.DOCKER_USERNAME }}/simple-webapp-color:1.3
 
     - name: Install OpenShift CLI
       run: |
