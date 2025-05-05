@@ -89,7 +89,7 @@ jobs:
 
     - name: Deploy to OpenShift
       run: |
-        oc apply -f manifest.yaml
+        oc apply -f manifest.yml
 
     # - name: Deploy to OpenShift
     #   run: |
