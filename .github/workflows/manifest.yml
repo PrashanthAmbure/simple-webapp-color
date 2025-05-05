@@ -17,23 +17,22 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v4
 
-    - name: Check if Docker password is set
-      shell: bash
+    - name: Check if Docker password is set (PowerShell)
       run: |
-        if [ -z "${{ secrets.DOCKER_PASSWORD }}" ]; then
-          echo "DOCKER_PASSWORD is empty"
-        else
-          echo "DOCKER_PASSWORD is set"
-        fi
+        if (-not "${{ secrets.DOCKER_PASSWORD }}") {
+          Write-Output "DOCKER_PASSWORD is empty"
+        } else {
+          Write-Output "DOCKER_PASSWORD is set"
+        }
 
-    - name: Check if Docker username is set
-      shell: bash
+    - name: Check if Docker username is set (PowerShell)
       run: |
-        if [ -z "${{ secrets.DOCKER_USERNAME }}" ]; then
-          echo "DOCKER_USERNAME is empty"
-        else
-          echo "DOCKER_USERNAME is set"
-        fi
+        if (-not "${{ secrets.DOCKER_USERNAME }}") {
+          Write-Output "DOCKER_USERNAME is empty"
+        } else {
+          Write-Output "DOCKER_USERNAME is set"
+        }
+    
         
     - name: Echo secret length (sanitized check)
       run: |
