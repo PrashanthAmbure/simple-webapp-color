@@ -59,8 +59,8 @@ jobs:
         curl -L https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz | tar -xz
         sudo mv oc kubectl /usr/local/bin/
         
-    - name: Debug DNS
-      run: nslookup https://api.crc.testing:6443
+    # - name: Debug DNS
+    #   run: nslookup https://api.crc.testing:6443
       
     - name: Login to OpenShift
       run: |
