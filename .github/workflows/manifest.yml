@@ -22,7 +22,10 @@ jobs:
         Write-Host "DOCKER_USERNAME length: $($env:DOCKER_USERNAME.Length)"
         Write-Host "DOCKER_PASSWORD length: $($env:DOCKER_PASSWORD.Length)"
       shell: powershell
-        
+      
+    - name: Clear Docker credentials (optional)
+      run: rm -rf ~/.docker    
+      
     - name: Log in to Docker Hub
       run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
 
