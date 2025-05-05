@@ -59,13 +59,6 @@ jobs:
         curl -L https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux.tar.gz | tar -xz
         sudo mv oc kubectl /usr/local/bin/
         
-    # - name: Debug DNS
-    #   run: nslookup https://api.crc.testing:6443
-      
-    # - name: Login to OpenShift
-    #   run: |
-    #     oc login ${{ secrets.OCP_SERVER }} --token=${{ secrets.OCP_TOKEN }} --insecure-skip-tls-verify
-
     - name: Install OpenShift CLI on Windows
       shell: powershell
       run: |
@@ -78,6 +71,16 @@ jobs:
     
         $env:Path += ";$extractPath"
         Write-Output "OC CLI installed and added to PATH"
+ 
+      
+      # - name: Debug DNS
+      #   run: nslookup https://api.crc.testing:6443
+      
+    - name: Login to OpenShift
+      run: |
+        oc login ${{ secrets.OCP_SERVER }} --token=${{ secrets.OCP_TOKEN }} --insecure-skip-tls-verify
+
+
 
     - name: Deploy to OpenShift
       run: |
