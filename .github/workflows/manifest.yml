@@ -79,7 +79,6 @@ jobs:
         $env:Path += ";$extractPath"
         Write-Output "OC CLI installed and added to PATH"
 
-
     - name: Deploy to OpenShift
       run: |
         oc project ${{ secrets.OCP_NAMESPACE }}
