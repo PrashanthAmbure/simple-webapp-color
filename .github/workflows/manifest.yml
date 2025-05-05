@@ -80,14 +80,18 @@ jobs:
       run: |
         oc login ${{ secrets.OCP_SERVER }} --token=${{ secrets.OCP_TOKEN }} --insecure-skip-tls-verify
 
-
-
     - name: Deploy to OpenShift
       run: |
-        oc project ${{ secrets.OCP_NAMESPACE }}
-        oc delete deployment simple-webapp-color || true
-        oc run simple-webapp-color \
-          --image=${{ secrets.DOCKER_USERNAME }}/simple-webapp-color:1.3 \
-          --port=3000 \
-          --restart=Always
-        oc expose pod simple-webapp-color --port=3000 --name=simple-webapp-service || true
+        oc apply -f manifest.yaml
+
+
+
+    # - name: Deploy to OpenShift
+    #   run: |
+    #     oc project ${{ secrets.OCP_NAMESPACE }}
+    #     oc delete deployment simple-webapp-color || true
+    #     oc run simple-webapp-color \
+    #       --image=${{ secrets.DOCKER_USERNAME }}/simple-webapp-color:1.3 \
+    #       --port=3000 \
+    #       --restart=Always
+    #     oc expose pod simple-webapp-color --port=3000 --name=simple-webapp-service || true
