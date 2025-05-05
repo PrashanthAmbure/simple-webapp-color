@@ -18,6 +18,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Check if Docker password is set
+      shell: bash
       run: |
         if [ -z "${{ secrets.DOCKER_PASSWORD }}" ]; then
           echo "DOCKER_PASSWORD is empty"
@@ -26,6 +27,7 @@ jobs:
         fi
 
     - name: Check if Docker username is set
+      shell: bash
       run: |
         if [ -z "${{ secrets.DOCKER_USERNAME }}" ]; then
           echo "DOCKER_USERNAME is empty"
