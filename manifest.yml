@@ -8,7 +8,7 @@ spec:
     kind: Service
     name: k8s-color-webapp-service
   port:
-    targetPort: 3000
+    targetPort: 8080
   tls:
     termination: edge
 ---
